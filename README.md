@@ -11,7 +11,7 @@ This project is powered by [Vite](https://vitejs.dev/)
 
 ## Run remotely
 
-→ [Run on StackBlitz](https://stackblitz.com/github/alexreardon/pdnd-react-tailwind?startScript=dev)
+→ [Run on StackBlitz](https://stackblitz.com/github/dotnize/pdnd-solid-tailwind?startScript=dev)
 
 ## Run locally
 
