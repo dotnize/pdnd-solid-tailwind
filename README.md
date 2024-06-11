@@ -1,28 +1,24 @@
-## Usage
+This is based on [alexreardon/pdnd-react-tailwind](https://github.com/alexreardon/pdnd-react-tailwind), ported to SolidJS.
+
+A simple reorderable list example with:
+
+- [Pragmatic drag drag and drop](https://github.com/atlassian/pragmatic-drag-and-drop)
+- [Solid](https://solidjs.com/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+This project is powered by [Vite](https://vitejs.dev/)
+
+## Run remotely
+
+→ [Run on StackBlitz](https://stackblitz.com/github/alexreardon/pdnd-react-tailwind?startScript=dev)
+
+## Run locally
 
 ```bash
-$ npm install # or pnpm install or yarn install
+# Install dependencies
+pnpm install # or npm install
+
+# Start dev server
+pnpm run dev # or npm run dev
 ```
-
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm run dev`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-Learn more about deploying your application with the [documentations](https://vitejs.dev/guide/static-deploy.html)
