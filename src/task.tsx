@@ -3,7 +3,6 @@ import {
   extractClosestEdge,
   type Edge,
 } from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
-import { combine } from '@atlaskit/pragmatic-drag-and-drop/combine';
 import {
   draggable,
   dropTargetForElements,
@@ -54,76 +53,76 @@ export function Task({ task }: { task: TTask }) {
   createEffect(() => {
     const element = ref;
     invariant(element);
-    return combine(
-      draggable({
-        element,
-        getInitialData() {
-          return getTaskData(task);
-        },
-        onGenerateDragPreview({ nativeSetDragImage }) {
-          setCustomNativeDragPreview({
-            nativeSetDragImage,
-            getOffset: pointerOutsideOfPreview({
-              x: '16px',
-              y: '8px',
-            }),
-            render({ container }) {
-              setState({ type: 'preview', container });
-            },
-          });
-        },
-        onDragStart() {
-          setState({ type: 'is-dragging' });
-        },
-        onDrop() {
-          setState(idle);
-        },
-      }),
-      dropTargetForElements({
-        element,
-        canDrop({ source }) {
-          // not allowing dropping on yourself
-          if (source.element === element) {
-            return false;
-          }
-          // only allowing tasks to be dropped on me
-          return isTaskData(source.data);
-        },
-        getData({ input }) {
-          const data = getTaskData(task);
-          return attachClosestEdge(data, {
-            element,
-            input,
-            allowedEdges: ['top', 'bottom'],
-          });
-        },
-        getIsSticky() {
-          return true;
-        },
-        onDragEnter({ self }) {
-          const closestEdge = extractClosestEdge(self.data);
-          setState({ type: 'is-dragging-over', closestEdge });
-        },
-        onDrag({ self }) {
-          const closestEdge = extractClosestEdge(self.data);
 
-          // Only need to update state if nothing has changed.
-          // Prevents re-rendering.
-          setState((current) => {
-            if (current.type === 'is-dragging-over' && current.closestEdge === closestEdge) {
-              return current;
-            }
-            return { type: 'is-dragging-over', closestEdge };
-          });
-        },
-        onDragLeave() {
-          setState(idle);
-        },
-        onDrop() {
-          setState(idle);
-        },
-      }),
-    );
+    draggable({
+      element,
+      getInitialData() {
+        return getTaskData(task);
+      },
+      onGenerateDragPreview({ nativeSetDragImage }) {
+        setCustomNativeDragPreview({
+          nativeSetDragImage,
+          getOffset: pointerOutsideOfPreview({
+            x: '16px',
+            y: '8px',
+          }),
+          render({ container }) {
+            setState({ type: 'preview', container });
+          },
+        });
+      },
+      onDragStart() {
+        setState({ type: 'is-dragging' });
+      },
+      onDrop() {
+        setState(idle);
+      },
+    });
+
+    dropTargetForElements({
+      element,
+      canDrop({ source }) {
+        // not allowing dropping on yourself
+        if (source.element === element) {
+          return false;
+        }
+        // only allowing tasks to be dropped on me
+        return isTaskData(source.data);
+      },
+      getData({ input }) {
+        const data = getTaskData(task);
+        return attachClosestEdge(data, {
+          element,
+          input,
+          allowedEdges: ['top', 'bottom'],
+        });
+      },
+      getIsSticky() {
+        return true;
+      },
+      onDragEnter({ self }) {
+        const closestEdge = extractClosestEdge(self.data);
+        setState({ type: 'is-dragging-over', closestEdge });
+      },
+      onDrag({ self }) {
+        const closestEdge = extractClosestEdge(self.data);
+
+        // Only need to update state if nothing has changed.
+        // Prevents re-rendering.
+        setState((current) => {
+          if (current.type === 'is-dragging-over' && current.closestEdge === closestEdge) {
+            return current;
+          }
+          return { type: 'is-dragging-over', closestEdge };
+        });
+      },
+      onDragLeave() {
+        setState(idle);
+      },
+      onDrop() {
+        setState(idle);
+      },
+    });
   });
 
   return (
