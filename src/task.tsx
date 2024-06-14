@@ -46,12 +46,13 @@ const stateStyles: { [Key in TaskState['type']]?: JSX.HTMLAttributes<HTMLDivElem
 
 const idle: TaskState = { type: 'idle' };
 
-export function Task({ task }: { task: TTask }) {
+export function Task(props: { task: TTask }) {
   let ref: HTMLDivElement | undefined = undefined;
   const [state, setState] = createSignal<TaskState>(idle);
 
   createEffect(() => {
     const element = ref;
+    const task = props.task;
     invariant(element);
 
     draggable({
@@ -130,15 +131,15 @@ export function Task({ task }: { task: TTask }) {
       <div class="relative">
         <div
           // Adding data-attribute as a way to query for this for our post drop flash
-          data-task-id={task.id}
+          data-task-id={props.task.id}
           ref={ref}
           class={`flex text-sm bg-white flex-row items-center border border-solid rounded p-2 pl-0 hover:bg-slate-100 hover:cursor-grab ${stateStyles[state().type] ?? ''}`}
         >
           <div class="w-6 flex justify-center">
             <GripVertical size={10} />
           </div>
-          <span class="truncate flex-grow flex-shrink">{task.content}</span>
-          <Status status={task.status} />
+          <span class="truncate flex-grow flex-shrink">{props.task.content}</span>
+          <Status status={props.task.status} />
         </div>
         {state().type === 'is-dragging-over' && state().closestEdge ? (
           <DropIndicator edge={state().closestEdge!} gap={'8px'} />
@@ -146,7 +147,7 @@ export function Task({ task }: { task: TTask }) {
       </div>
       {state().type === 'preview' ? (
         <Portal mount={state().container}>
-          <DragPreview task={task} />
+          <DragPreview task={props.task} />
         </Portal>
       ) : null}
     </>
