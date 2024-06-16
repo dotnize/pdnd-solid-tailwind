@@ -40,9 +40,10 @@ interface TaskState {
   closestEdge?: Edge | null;
 }
 
-const stateStyles: { [Key in TaskState['type']]?: JSX.HTMLAttributes<HTMLDivElement>['class'] } = {
-  'is-dragging': 'opacity-40',
-};
+const stateStyles: Partial<Record<TaskState['type'], JSX.HTMLAttributes<HTMLDivElement>['class']>> =
+  {
+    'is-dragging': 'opacity-40',
+  };
 
 const idle: TaskState = { type: 'idle' };
 

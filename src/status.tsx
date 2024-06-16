@@ -1,13 +1,13 @@
 import type { JSX } from 'solid-js';
 import type { TStatus } from './task-data';
 
-const bgColor: { [Key in TStatus]: JSX.HTMLAttributes<HTMLElement>['class'] } = {
+const bgColor: Record<TStatus, JSX.HTMLAttributes<HTMLElement>['class']> = {
   todo: 'bg-violet-200 ',
   'in-progress': 'bg-amber-200',
   done: 'bg-green-200',
 };
 
-const label: { [Key in TStatus]: string } = {
+const label: Record<TStatus, string> = {
   todo: 'TODO',
   'in-progress': 'In progress',
   done: 'Done',
