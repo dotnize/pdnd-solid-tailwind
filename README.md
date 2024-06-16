@@ -2,7 +2,7 @@ This is based on [alexreardon/pdnd-react-tailwind](https://github.com/alexreardo
 
 A simple reorderable list example with:
 
-- [Pragmatic drag drag and drop](https://github.com/atlassian/pragmatic-drag-and-drop)
+- [Pragmatic drag and drop](https://github.com/atlassian/pragmatic-drag-and-drop)
 - [Solid](https://solidjs.com/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
