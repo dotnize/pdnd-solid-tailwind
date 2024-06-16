@@ -155,6 +155,6 @@ export function Task(props: { task: TTask }) {
 }
 
 // A simplified version of our task for the user to drag around
-function DragPreview({ task }: { task: TTask }) {
-  return <div class="border-solid rounded p-2 bg-white">{task.content}</div>;
+function DragPreview(props: { task: TTask }) {
+  return <div class="border-solid rounded p-2 bg-white">{props.task.content}</div>;
 }

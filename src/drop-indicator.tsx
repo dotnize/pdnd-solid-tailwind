@@ -32,23 +32,19 @@ const offsetToAlignTerminalWithLine = (strokeSize - terminalSize) / 2;
  * This is a tailwind port of `@atlaskit/pragmatic-drag-and-drop-react-drop-indicator/box`
  */
 export function DropIndicator(props: { edge: Edge; gap: string }) {
-  const lineOffset = `calc(-0.5 * (${props.gap} + ${strokeSize}px))`;
-
-  const orientation = edgeToOrientationMap[props.edge];
-
   return (
     <div
       style={
         {
           '--line-thickness': `${strokeSize}px`,
-          '--line-offset': `${lineOffset}`,
+          '--line-offset': `calc(-0.5 * (${props.gap} + ${strokeSize}px))`,
           '--terminal-size': `${terminalSize}px`,
           '--terminal-radius': `${terminalSize / 2}px`,
           '--negative-terminal-size': `-${terminalSize}px`,
           '--offset-terminal': `${offsetToAlignTerminalWithLine}px`,
         } as JSX.CSSProperties
       }
-      class={`absolute z-10 bg-blue-700 pointer-events-none before:content-[''] before:w-[--terminal-size] before:h-[--terminal-size] box-border before:absolute before:border-[length:--line-thickness] before:border-solid before:border-blue-700 before:rounded-full ${orientationStyles[orientation]} ${[edgeStyles[props.edge]]}`}
-    ></div>
+      class={`absolute z-10 bg-blue-700 pointer-events-none before:content-[''] before:w-[--terminal-size] before:h-[--terminal-size] box-border before:absolute before:border-[length:--line-thickness] before:border-solid before:border-blue-700 before:rounded-full ${orientationStyles[edgeToOrientationMap[props.edge]]} ${[edgeStyles[props.edge]]}`}
+    />
   );
 }
