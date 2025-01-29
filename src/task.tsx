@@ -9,7 +9,7 @@ import {
 } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { pointerOutsideOfPreview } from '@atlaskit/pragmatic-drag-and-drop/element/pointer-outside-of-preview';
 import { setCustomNativeDragPreview } from '@atlaskit/pragmatic-drag-and-drop/element/set-custom-native-drag-preview';
-import { GripVertical } from 'lucide-solid';
+import GripVertical from 'lucide-solid/icons/grip-vertical';
 import { createEffect, createSignal, type JSX } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import invariant from 'tiny-invariant';
